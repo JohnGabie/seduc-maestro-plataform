@@ -1,9 +1,11 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Plus, Filter, Bot as BotIcon } from 'lucide-react';
-import { AppSidebar } from '@/components/AppSidebar';
+import { AppSidebar, MobileMenuButton } from '@/components/AppSidebar';
 import { AppBar } from '@/components/AppBar';
 import { BotCard } from '@/components/BotCard';
+import { BotCardSkeleton } from '@/components/BotCardSkeleton';
 import { ExecuteModal } from '@/components/ExecuteModal';
+import { NewBotModal } from '@/components/NewBotModal';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -24,13 +26,21 @@ export default function Dashboard() {
   const [tagFilters, setTagFilters] = useState<string[]>([]);
   const [selectedBot, setSelectedBot] = useState<Bot | null>(null);
   const [executeModalOpen, setExecuteModalOpen] = useState(false);
+  const [newBotModalOpen, setNewBotModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Debounced search (simple implementation)
+  // Simulate initial loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Debounced search
   const [debouncedSearch, setDebouncedSearch] = useState('');
   
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
-    // Simple debounce
     const timeout = setTimeout(() => setDebouncedSearch(value), 300);
     return () => clearTimeout(timeout);
   }, []);
@@ -38,18 +48,15 @@ export default function Dashboard() {
   // Filter bots
   const filteredBots = useMemo(() => {
     return mockBots.filter((bot) => {
-      // Search filter
       const searchLower = debouncedSearch.toLowerCase();
       const matchesSearch =
         !debouncedSearch ||
         bot.nome.toLowerCase().includes(searchLower) ||
         bot.tags.some((tag) => tag.toLowerCase().includes(searchLower));
 
-      // Status filter
       const matchesStatus =
         statusFilters.length === 0 || statusFilters.includes(bot.status);
 
-      // Tag filter
       const matchesTags =
         tagFilters.length === 0 ||
         bot.tags.some((tag) => tagFilters.includes(tag));
@@ -81,25 +88,29 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background flex w-full">
-      <AppSidebar />
+      <AppSidebar mobileOpen={mobileMenuOpen} onMobileClose={() => setMobileMenuOpen(false)} />
       
       <div className="flex-1 flex flex-col min-w-0">
-        <AppBar searchValue={search} onSearchChange={handleSearchChange} />
+        <AppBar 
+          searchValue={search} 
+          onSearchChange={handleSearchChange}
+          leftContent={<MobileMenuButton onClick={() => setMobileMenuOpen(true)} />}
+        />
         
-        <main className="flex-1 p-6 overflow-auto scrollbar-dark">
+        <main className="flex-1 p-4 md:p-6 overflow-auto scrollbar-dark">
           {/* Controls */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button onClick={() => setNewBotModalOpen(true)} className="flex-1 sm:flex-none">
                 <Plus className="h-4 w-4 mr-2" />
-                Novo bot
+                <span className="sm:inline">Novo bot</span>
               </Button>
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="border-border">
-                    <Filter className="h-4 w-4 mr-2" />
-                    Filtros
+                    <Filter className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Filtros</span>
                     {activeFiltersCount > 0 && (
                       <Badge className="ml-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
                         {activeFiltersCount}
@@ -149,8 +160,14 @@ export default function Dashboard() {
             </p>
           </div>
 
-          {/* Bots Grid or Empty State */}
-          {filteredBots.length > 0 ? (
+          {/* Loading Skeletons */}
+          {loading ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {[...Array(4)].map((_, i) => (
+                <BotCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : filteredBots.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {filteredBots.map((bot) => (
                 <BotCard key={bot.id} bot={bot} onExecute={handleExecute} />
@@ -170,7 +187,7 @@ export default function Dashboard() {
                   : 'Comece criando seu primeiro bot para automatizar suas tarefas.'}
               </p>
               {!debouncedSearch && activeFiltersCount === 0 && (
-                <Button>
+                <Button onClick={() => setNewBotModalOpen(true)}>
                   <Plus className="h-4 w-4 mr-2" />
                   Novo bot
                 </Button>
@@ -180,11 +197,15 @@ export default function Dashboard() {
         </main>
       </div>
 
-      {/* Execute Modal */}
+      {/* Modals */}
       <ExecuteModal
         bot={selectedBot}
         open={executeModalOpen}
         onOpenChange={setExecuteModalOpen}
+      />
+      <NewBotModal
+        open={newBotModalOpen}
+        onOpenChange={setNewBotModalOpen}
       />
     </div>
   );
