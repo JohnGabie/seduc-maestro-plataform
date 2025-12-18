@@ -1,4 +1,5 @@
 import { Play, Clock, Timer, Tag } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Bot } from '@/data/mockBots';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -16,8 +17,22 @@ const statusStyles = {
 };
 
 export function BotCard({ bot, onExecute }: BotCardProps) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/bots/${bot.id}`);
+  };
+
+  const handleExecuteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onExecute(bot);
+  };
+
   return (
-    <div className="bg-card border border-border rounded-xl p-5 space-y-4 hover:border-primary/30 transition-colors">
+    <div 
+      onClick={handleCardClick}
+      className="bg-card border border-border rounded-xl p-5 space-y-4 hover:border-primary/30 transition-colors cursor-pointer"
+    >
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1 min-w-0">
@@ -33,7 +48,7 @@ export function BotCard({ bot, onExecute }: BotCardProps) {
         </div>
         <Button
           size="sm"
-          onClick={() => onExecute(bot)}
+          onClick={handleExecuteClick}
           className="flex-shrink-0"
         >
           <Play className="h-4 w-4 mr-1.5" />
