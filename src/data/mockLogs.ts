@@ -41,6 +41,40 @@ export const mockHistory: ExecutionHistory[] = [
   { id: "exec-8", dataHora: "14/12/2024 12:00", status: "Sucesso", duracao: "5m 10s", registrosProcessados: 41 },
 ];
 
+// Chart data for performance visualization
+export const chartData = {
+  executionTrend: [
+    { date: "10/12", sucesso: 2, falha: 0 },
+    { date: "11/12", sucesso: 2, falha: 1 },
+    { date: "12/12", sucesso: 2, falha: 0 },
+    { date: "13/12", sucesso: 2, falha: 0 },
+    { date: "14/12", sucesso: 2, falha: 0 },
+    { date: "15/12", sucesso: 1, falha: 0 },
+    { date: "16/12", sucesso: 2, falha: 0 },
+    { date: "17/12", sucesso: 1, falha: 1 },
+  ],
+  durationTrend: [
+    { date: "10/12", duracao: 4.8 },
+    { date: "11/12", duracao: 5.2 },
+    { date: "12/12", duracao: 4.9 },
+    { date: "13/12", duracao: 5.0 },
+    { date: "14/12", duracao: 4.9 },
+    { date: "15/12", duracao: 5.0 },
+    { date: "16/12", duracao: 5.1 },
+    { date: "17/12", duracao: 5.0 },
+  ],
+  recordsTrend: [
+    { date: "10/12", registros: 38 },
+    { date: "11/12", registros: 42 },
+    { date: "12/12", registros: 35 },
+    { date: "13/12", registros: 40 },
+    { date: "14/12", registros: 38 },
+    { date: "15/12", registros: 40 },
+    { date: "16/12", registros: 40 },
+    { date: "17/12", registros: 45 },
+  ],
+};
+
 export interface ScheduleSlot {
   id: string;
   dia: 'seg' | 'ter' | 'qua' | 'qui' | 'sex' | 'sab' | 'dom';

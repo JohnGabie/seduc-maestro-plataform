@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { mockLogs, LogEntry } from "@/data/mockLogs";
 
 const levelConfig = {
-  info: { icon: Info, color: "text-blue-400", bg: "bg-blue-400/10", label: "Info" },
-  warn: { icon: AlertTriangle, color: "text-status-paused", bg: "bg-status-paused/10", label: "Aviso" },
-  error: { icon: AlertCircle, color: "text-status-error", bg: "bg-status-error/10", label: "Erro" },
+  info: { icon: Info, color: "text-info", bg: "bg-info/10", label: "Info" },
+  warn: { icon: AlertTriangle, color: "text-warning", bg: "bg-warning/10", label: "Aviso" },
+  error: { icon: AlertCircle, color: "text-destructive", bg: "bg-destructive/10", label: "Erro" },
   debug: { icon: Bug, color: "text-purple-400", bg: "bg-purple-400/10", label: "Debug" },
 };
 
@@ -38,7 +38,7 @@ export function LogsTab() {
             placeholder="Buscar nos logs..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-surface border-border"
+            className="pl-10 bg-input border-border"
           />
         </div>
         <div className="flex gap-2">
@@ -58,7 +58,7 @@ export function LogsTab() {
       </div>
 
       {/* Logs List */}
-      <div className="bg-surface rounded-lg border border-border overflow-hidden">
+      <div className="bg-card rounded-lg border border-border overflow-hidden">
         {filteredLogs.length > 0 ? (
           <div className="divide-y divide-border">
             {filteredLogs.map(log => {
@@ -66,7 +66,7 @@ export function LogsTab() {
               const Icon = config.icon;
               
               return (
-                <div key={log.id} className="p-3 hover:bg-surface-alt transition-colors">
+                <div key={log.id} className="p-3 hover:bg-muted/30 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className={`p-1.5 rounded ${config.bg} mt-0.5`}>
                       <Icon className={`h-4 w-4 ${config.color}`} />
