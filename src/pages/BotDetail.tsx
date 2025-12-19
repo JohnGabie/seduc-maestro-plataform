@@ -22,9 +22,9 @@ import { ConfiguracoesTab } from "@/components/bot-detail/ConfiguracoesTab";
 import { mockBots, Bot } from "@/data/mockBots";
 
 const statusStyles = {
-  Ativo: "bg-status-active/10 text-status-active border-status-active/30",
-  Pausado: "bg-status-paused/10 text-status-paused border-status-paused/30",
-  Erro: "bg-status-error/10 text-status-error border-status-error/30",
+  Ativo: "bg-success/10 text-success border-success/30",
+  Pausado: "bg-warning/10 text-warning border-warning/30",
+  Erro: "bg-destructive/10 text-destructive border-destructive/30",
 };
 
 export default function BotDetail() {

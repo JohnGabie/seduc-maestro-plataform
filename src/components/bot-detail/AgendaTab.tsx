@@ -55,7 +55,7 @@ export function AgendaTab() {
             if (slots.length === 0) return null;
             
             return (
-              <div key={dia.key} className="bg-surface rounded-lg border border-border p-4">
+              <div key={dia.key} className="bg-card rounded-lg border border-border p-4">
                 <h4 className="font-medium text-foreground mb-3 flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-primary" />
                   {dia.label}
@@ -88,7 +88,7 @@ export function AgendaTab() {
           })}
         </div>
       ) : (
-        <div className="text-center py-12 bg-surface rounded-lg border border-border">
+        <div className="text-center py-12 bg-card rounded-lg border border-border">
           <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
           <p className="text-muted-foreground">Sem horários configurados — adicione um</p>
           <Button size="sm" variant="outline" className="mt-4 gap-2">
@@ -100,14 +100,14 @@ export function AgendaTab() {
 
       {/* Info Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-border">
-        <div className="bg-surface-alt rounded-lg p-4">
+        <div className="bg-muted/30 rounded-lg p-4">
           <h4 className="font-medium text-foreground mb-2">Feriados</h4>
           <p className="text-sm text-muted-foreground">Nenhum feriado configurado</p>
           <Button variant="ghost" size="sm" className="mt-2 text-primary">
             Configurar feriados
           </Button>
         </div>
-        <div className="bg-surface-alt rounded-lg p-4">
+        <div className="bg-muted/30 rounded-lg p-4">
           <h4 className="font-medium text-foreground mb-2">Janela de Manutenção</h4>
           <p className="text-sm text-muted-foreground">Sem janela de manutenção ativa</p>
           <Button variant="ghost" size="sm" className="mt-2 text-primary">
