@@ -97,7 +97,7 @@ export default function Dashboard() {
           leftContent={<MobileMenuButton onClick={() => setMobileMenuOpen(true)} />}
         />
         
-        <main className="flex-1 p-4 md:p-6 overflow-auto scrollbar-dark">
+        <main className="flex-1 p-4 md:p-6 overflow-auto scrollbar-dark animate-page-in">
           {/* Controls */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div className="flex items-center gap-2 sm:gap-3">

@@ -76,7 +76,7 @@ export default function BotDetail() {
           showSearch={false}
           leftContent={<MobileMenuButton onClick={() => setMobileMenuOpen(true)} />}
         />
-        <main className="flex-1 overflow-auto p-4 md:p-6">
+        <main className="flex-1 overflow-auto p-4 md:p-6 animate-page-in">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
             <button 
@@ -91,7 +91,7 @@ export default function BotDetail() {
           </div>
 
           {/* Header */}
-          <div className="bg-surface rounded-xl border border-border p-4 md:p-6 mb-6">
+          <div className="bg-card rounded-xl border border-border p-4 md:p-6 mb-6">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-3">
@@ -160,7 +160,7 @@ export default function BotDetail() {
 
           {/* Tabs */}
           <Tabs defaultValue="agenda" className="space-y-4 md:space-y-6">
-            <TabsList className="bg-surface border border-border w-full md:w-auto overflow-x-auto">
+            <TabsList className="bg-card border border-border w-full md:w-auto overflow-x-auto">
               <TabsTrigger value="agenda" className="text-xs md:text-sm">Agenda</TabsTrigger>
               <TabsTrigger value="logs" className="text-xs md:text-sm">Logs</TabsTrigger>
               <TabsTrigger value="historico" className="text-xs md:text-sm">Histórico</TabsTrigger>
