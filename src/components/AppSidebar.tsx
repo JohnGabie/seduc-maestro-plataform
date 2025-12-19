@@ -13,10 +13,13 @@ import {
   LogOut,
   Menu,
   X,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useTheme } from '@/hooks/useTheme';
 
 interface NavItem {
   title: string;
@@ -43,6 +46,7 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
@@ -152,7 +156,34 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
         </nav>
 
         {/* Footer */}
-        <div className="p-2 border-t border-sidebar-border">
+        <div className="p-2 border-t border-sidebar-border space-y-1">
+          {/* Theme Toggle */}
+          <Tooltip delayDuration={0}>
+            <TooltipTrigger asChild>
+              <button
+                onClick={toggleTheme}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-5 w-5 flex-shrink-0" />
+                ) : (
+                  <Moon className="h-5 w-5 flex-shrink-0" />
+                )}
+                {(!collapsed || mobileOpen) && (
+                  <span className="text-sm font-medium">
+                    {theme === 'dark' ? 'Tema Claro' : 'Tema Escuro'}
+                  </span>
+                )}
+              </button>
+            </TooltipTrigger>
+            {collapsed && !mobileOpen && (
+              <TooltipContent side="right" className="bg-popover text-popover-foreground">
+                {theme === 'dark' ? 'Tema Claro' : 'Tema Escuro'}
+              </TooltipContent>
+            )}
+          </Tooltip>
+
+          {/* Logout */}
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <button
