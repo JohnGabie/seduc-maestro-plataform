@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import BotDetail from "./pages/BotDetail";
 import Logs from "./pages/Logs";
+import Agenda from "./pages/Agenda";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/bots" element={<Dashboard />} />
           <Route path="/bots/:id" element={<BotDetail />} />
           <Route path="/logs" element={<Logs />} />
+          <Route path="/agenda" element={<Agenda />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
