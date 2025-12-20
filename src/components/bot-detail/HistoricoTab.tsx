@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { CheckCircle, XCircle, Ban, Clock, FileText, TrendingUp, BarChart3, Activity } from "lucide-react";
+import { CheckCircle, XCircle, Ban, Clock, FileText, TrendingUp, BarChart3, Activity, Download } from "lucide-react";
+import { exportToCSV } from "@/lib/exportUtils";
+import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -194,7 +196,24 @@ export function HistoricoTab() {
             <Activity className="h-5 w-5 text-primary" />
             <h3 className="font-semibold text-foreground">Histórico de Execuções</h3>
           </div>
-          <Badge variant="secondary">{history.length} execuções</Badge>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                exportToCSV(history, "historico_execucoes");
+                toast({
+                  title: "Exportação concluída",
+                  description: "O arquivo CSV foi baixado com sucesso.",
+                });
+              }}
+              className="border-border"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Exportar CSV
+            </Button>
+            <Badge variant="secondary">{history.length} execuções</Badge>
+          </div>
         </div>
         <div className="divide-y divide-border">
           {history.map((exec, index) => {
