@@ -10,6 +10,8 @@ import Logs from "./pages/Logs";
 import Agenda from "./pages/Agenda";
 import Execucoes from "./pages/Execucoes";
 import Configuracoes from "./pages/Configuracoes";
+import Alertas from "./pages/Alertas";
+import Usuarios from "./pages/Usuarios";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/agenda" element={<Agenda />} />
           <Route path="/execucoes" element={<Execucoes />} />
           <Route path="/configuracoes" element={<Configuracoes />} />
+          <Route path="/alertas" element={<Alertas />} />
+          <Route path="/usuarios" element={<Usuarios />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
