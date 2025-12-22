@@ -20,21 +20,24 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useTheme } from '@/hooks/useTheme';
+import { usePermissions } from '@/hooks/usePermissions';
+import { Permission } from '@/data/mockUsers';
 
 interface NavItem {
   title: string;
   url: string;
   icon: React.ElementType;
+  requiredPermission?: Permission;
 }
 
 const navItems: NavItem[] = [
-  { title: 'Bots', url: '/bots', icon: Bot },
-  { title: 'Agenda', url: '/agenda', icon: Calendar },
-  { title: 'Execuções', url: '/execucoes', icon: Play },
-  { title: 'Logs', url: '/logs', icon: FileText },
-  { title: 'Configurações', url: '/configuracoes', icon: Settings },
-  { title: 'Usuários', url: '/usuarios', icon: Users },
-  { title: 'Alertas', url: '/alertas', icon: Bell },
+  { title: 'Bots', url: '/bots', icon: Bot, requiredPermission: 'bots.visualizar' },
+  { title: 'Agenda', url: '/agenda', icon: Calendar, requiredPermission: 'agenda.visualizar' },
+  { title: 'Execuções', url: '/execucoes', icon: Play, requiredPermission: 'bots.executar' },
+  { title: 'Logs', url: '/logs', icon: FileText, requiredPermission: 'logs.visualizar' },
+  { title: 'Configurações', url: '/configuracoes', icon: Settings, requiredPermission: 'configuracoes.editar' },
+  { title: 'Usuários', url: '/usuarios', icon: Users, requiredPermission: 'usuarios.gerenciar' },
+  { title: 'Alertas', url: '/alertas', icon: Bell, requiredPermission: 'alertas.gerenciar' },
 ];
 
 interface AppSidebarProps {
@@ -47,6 +50,7 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+  const { hasPermission } = usePermissions();
 
   const isActive = (path: string) => location.pathname.startsWith(path);
 
@@ -69,8 +73,8 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
       <aside
         className={cn(
           'h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300 z-50',
-          // Desktop
-          'hidden lg:flex',
+          // Desktop - sticky to follow scroll
+          'hidden lg:flex lg:sticky lg:top-0',
           collapsed ? 'lg:w-16' : 'lg:w-60',
           // Mobile
           mobileOpen && 'fixed inset-y-0 left-0 flex w-60 lg:relative'
@@ -121,6 +125,11 @@ export function AppSidebar({ mobileOpen, onMobileClose }: AppSidebarProps) {
         {/* Navigation */}
         <nav className="flex-1 py-4 px-2 space-y-1 overflow-y-auto scrollbar-dark">
           {navItems.map((item) => {
+            // Check permission if required
+            if (item.requiredPermission && !hasPermission(item.requiredPermission)) {
+              return null;
+            }
+
             const Icon = item.icon;
             const active = isActive(item.url);
 

@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { mockBots, allTags, Bot } from '@/data/mockBots';
+import { usePermissions } from '@/hooks/usePermissions';
 
 type StatusFilter = 'Ativo' | 'Pausado' | 'Erro';
 
@@ -29,6 +30,7 @@ export default function Dashboard() {
   const [newBotModalOpen, setNewBotModalOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { hasPermission } = usePermissions();
 
   // Simulate initial loading
   useEffect(() => {
@@ -101,10 +103,12 @@ export default function Dashboard() {
           {/* Controls */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div className="flex items-center gap-2 sm:gap-3">
-              <Button onClick={() => setNewBotModalOpen(true)} className="flex-1 sm:flex-none">
-                <Plus className="h-4 w-4 mr-2" />
-                <span className="sm:inline">Novo bot</span>
-              </Button>
+              {hasPermission('bots.criar') && (
+                <Button onClick={() => setNewBotModalOpen(true)} className="flex-1 sm:flex-none">
+                  <Plus className="h-4 w-4 mr-2" />
+                  <span className="sm:inline">Novo bot</span>
+                </Button>
+              )}
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -186,7 +190,7 @@ export default function Dashboard() {
                   ? 'Tente ajustar os filtros ou termo de busca.'
                   : 'Comece criando seu primeiro bot para automatizar suas tarefas.'}
               </p>
-              {!debouncedSearch && activeFiltersCount === 0 && (
+              {!debouncedSearch && activeFiltersCount === 0 && hasPermission('bots.criar') && (
                 <Button onClick={() => setNewBotModalOpen(true)}>
                   <Plus className="h-4 w-4 mr-2" />
                   Novo bot

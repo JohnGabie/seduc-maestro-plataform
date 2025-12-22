@@ -4,6 +4,7 @@ import { Bot } from '@/data/mockBots';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { usePermissions } from '@/hooks/usePermissions';
 
 interface BotCardProps {
   bot: Bot;
@@ -18,6 +19,7 @@ const statusStyles = {
 
 export function BotCard({ bot, onExecute }: BotCardProps) {
   const navigate = useNavigate();
+  const { hasPermission } = usePermissions();
 
   const handleCardClick = () => {
     navigate(`/bots/${bot.id}`);
@@ -46,14 +48,16 @@ export function BotCard({ bot, onExecute }: BotCardProps) {
             {bot.status}
           </span>
         </div>
-        <Button
-          size="sm"
-          onClick={handleExecuteClick}
-          className="flex-shrink-0"
-        >
-          <Play className="h-4 w-4 mr-1.5" />
-          Executar
-        </Button>
+        {hasPermission('bots.executar') && (
+          <Button
+            size="sm"
+            onClick={handleExecuteClick}
+            className="flex-shrink-0"
+          >
+            <Play className="h-4 w-4 mr-1.5" />
+            Executar
+          </Button>
+        )}
       </div>
 
       {/* Info Grid */}
