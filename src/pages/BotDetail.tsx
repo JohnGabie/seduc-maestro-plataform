@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AppSidebar, MobileMenuButton } from "@/components/AppSidebar";
 import { AppBar } from "@/components/AppBar";
 import { ExecuteModal } from "@/components/ExecuteModal";
+import { ChatHeads } from "@/components/ChatHeads";
 import { AgendaTab } from "@/components/bot-detail/AgendaTab";
 import { LogsTab } from "@/components/bot-detail/LogsTab";
 import { HistoricoTab } from "@/components/bot-detail/HistoricoTab";
@@ -70,6 +71,13 @@ export default function BotDetail() {
   return (
     <div className="min-h-screen flex w-full bg-background">
       <AppSidebar mobileOpen={mobileMenuOpen} onMobileClose={() => setMobileMenuOpen(false)} />
+      
+      {/* Chat Heads - Fixed console sessions */}
+      <ChatHeads 
+        activeSessionId={bot.id} 
+        onSelectSession={(session) => navigate(`/bots/${session.botId}`)}
+      />
+      
       <div className="flex-1 flex flex-col overflow-hidden">
         <AppBar 
           title="Detalhe do Bot" 
@@ -172,7 +180,7 @@ export default function BotDetail() {
             </TabsContent>
             
             <TabsContent value="logs" className="animate-fade-in">
-              <LogsTab />
+              <LogsTab botName={bot.nome} botId={bot.id} />
             </TabsContent>
             
             <TabsContent value="historico" className="animate-fade-in">
