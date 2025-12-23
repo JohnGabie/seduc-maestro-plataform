@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# 🤖 SEDUC Maestro Platform
 
-## Project info
+> Plataforma de orquestração e gerenciamento de bots para equipe interna.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+A **SEDUC Maestro Platform** é um painel administrativo desenvolvido para centralizar, monitorar e controlar o ecossistema de bots da nossa equipe. O objetivo é fornecer uma visão clara do status das automações, logs de execução e ferramentas de intervenção manual.
 
-## How can I edit this code?
+## 📸 Screenshots
 
-There are several ways of editing your application.
+![Dashboard Preview](https://via.placeholder.com/800x400?text=Preview+do+Dashboard)
 
-**Use Lovable**
+## 🚀 Funcionalidades
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+* **Monitoramento em Tempo Real:** Visualização do status dos bots (Online, Offline, Erro).
+* **Controle de Execução:** Comandos para iniciar, pausar ou reiniciar serviços.
+* **Visualização de Logs:** Acesso rápido ao histórico de atividades e erros.
+* **Gestão de Configurações:** Interface amigável para alterar parâmetros dos bots sem mexer no código.
+* **Interface Responsiva:** Design moderno construído com Tailwind CSS e shadcn/ui.
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tecnologias Utilizadas
 
-**Use your preferred IDE**
+Este projeto foi construído utilizando as seguintes tecnologias:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* **[React](https://react.dev/)** - Biblioteca para construção da interface.
+* **[TypeScript](https://www.typescriptlang.org/)** - Superset JavaScript para tipagem estática e segurança.
+* **[Vite](https://vitejs.dev/)** - Build tool rápida e leve.
+* **[Tailwind CSS](https://tailwindcss.com/)** - Framework de estilização utilitária.
+* **[shadcn/ui](https://ui.shadcn.com/)** - Componentes de interface reutilizáveis e acessíveis.
+* **[TanStack Query](https://tanstack.com/query/latest)** - (Se estiver usando) Para gerenciamento de estado assíncrono e requisições.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## ⚙️ Pré-requisitos
 
-Follow these steps:
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+* [Node.js](https://nodejs.org/en/) (Versão 18 ou superior)
+* [npm](https://www.npmjs.com/) ou [bun](https://bun.sh/)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📦 Como Rodar o Projeto
 
-# Step 3: Install the necessary dependencies.
-npm i
+Siga os passos abaixo para executar a aplicação em ambiente de desenvolvimento:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/JohnGabie/seduc-maestro-plataform.git](https://github.com/JohnGabie/seduc-maestro-plataform.git)
+    ```
 
-**Edit a file directly in GitHub**
+2.  **Entre na pasta do projeto:**
+    ```bash
+    cd seduc-maestro-plataform
+    ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    # ou
+    bun install
+    ```
 
-**Use GitHub Codespaces**
+4.  **Configure as Variáveis de Ambiente:**
+    Crie um arquivo `.env` na raiz do projeto com base no exemplo (se houver) e configure a URL da API dos bots.
+    ```env
+    VITE_API_URL=http://localhost:3000
+    ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+5.  **Execute o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    # ou
+    bun dev
+    ```
 
-## What technologies are used for this project?
+O projeto estará rodando em `http://localhost:8080` (ou a porta indicada no terminal).
 
-This project is built with:
+## 📂 Estrutura de Pastas
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```text
+src/
+├── components/   # Componentes reutilizáveis (botões, cards, inputs)
+├── pages/        # Páginas da aplicação (Dashboard, Configurações)
+├── hooks/        # Hooks personalizados do React
+├── services/     # Integração com APIs externas
+├── lib/          # Utilitários e configurações (ex: utils do Tailwind)
+└── App.tsx       # Componente principal
