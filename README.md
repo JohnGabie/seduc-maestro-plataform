@@ -6,12 +6,14 @@ A **SEDUC Maestro Platform** é um painel administrativo desenvolvido para centr
 
 ## 📸 Screenshots
 
+### 🤖 Tela dos bots/ menu principal
 <img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/698a6f03-a6fc-4148-86bb-13871549d973" />
-<img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/89d9ac31-c9d5-40a8-9c1e-f6b067d1f1be" />
-<img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/cc931646-97fb-4d91-b654-efc2b2bdf79e" />
-
-
-
+### 🤖 detalhes do bot
+<img width="1914" height="941" alt="image" src="https://github.com/user-attachments/assets/b999e62a-d10d-4d0c-a8da-48219d0642bc" />
+### 🔄 tela de execução
+<img width="1917" height="942" alt="image" src="https://github.com/user-attachments/assets/5b9c192c-15a3-4aab-a6d4-d0533bfca38a" />
+### 🔄 tela central de logs
+<img width="1902" height="938" alt="image" src="https://github.com/user-attachments/assets/2dc1a69b-5233-4c45-a366-56bb2eb35a3e" />
 
 ## 🚀 Funcionalidades
 
