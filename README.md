@@ -6,7 +6,12 @@ A **SEDUC Maestro Platform** é um painel administrativo desenvolvido para centr
 
 ## 📸 Screenshots
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Preview+do+Dashboard)
+<img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/698a6f03-a6fc-4148-86bb-13871549d973" />
+<img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/89d9ac31-c9d5-40a8-9c1e-f6b067d1f1be" />
+<img width="1905" height="940" alt="image" src="https://github.com/user-attachments/assets/cc931646-97fb-4d91-b654-efc2b2bdf79e" />
+
+
+
 
 ## 🚀 Funcionalidades
 
@@ -40,7 +45,7 @@ Siga os passos abaixo para executar a aplicação em ambiente de desenvolvimento
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/JohnGabie/seduc-maestro-plataform.git](https://github.com/JohnGabie/seduc-maestro-plataform.git)
+    git clone [https://github.com/JohnGabie/seduc-maestro-plataform.git] or (https://github.com/JohnGabie/seduc-maestro-plataform.git
     ```
 
 2.  **Entre na pasta do projeto:**
