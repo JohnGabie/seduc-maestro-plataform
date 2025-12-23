@@ -15,7 +15,7 @@ A **SEDUC Maestro Platform** é um painel administrativo desenvolvido para centr
 ### 🔄 tela de execução
 <img width="1917" height="942" alt="image" src="https://github.com/user-attachments/assets/5b9c192c-15a3-4aab-a6d4-d0533bfca38a" />
 
-### 🔄 tela central de logs
+### 🧾 tela central de logs
 <img width="1902" height="938" alt="image" src="https://github.com/user-attachments/assets/2dc1a69b-5233-4c45-a366-56bb2eb35a3e" />
 
 ## 🚀 Funcionalidades
